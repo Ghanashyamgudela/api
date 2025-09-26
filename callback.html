@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Spotify Callback</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 100px; }
+    pre { background: #f0f0f0; padding: 20px; display: inline-block; }
+  </style>
 </head>
 <body>
   <h1>Spotify Login Successful!</h1>
-  <div id="token"></div>
+  <p>Your Access Token:</p>
+  <pre id="token"></pre>
 
   <script>
-    // Parse access token from URL
+    // Extract access token from URL hash
     const hash = window.location.hash.substring(1).split("&").reduce((acc, item) => {
       const parts = item.split("=");
       acc[parts[0]] = decodeURIComponent(parts[1]);
@@ -16,8 +22,13 @@
     }, {});
 
     const token = hash.access_token;
-    document.getElementById("token").textContent = "Access Token: " + token;
-    console.log("Spotify Access Token:", token);
+    if(token) {
+      document.getElementById("token").textContent = token;
+      console.log("Spotify Access Token:", token);
+      // You can now use this token to call Spotify APIs
+    } else {
+      document.getElementById("token").textContent = "No token found. Login failed or cancelled.";
+    }
   </script>
 </body>
 </html>
