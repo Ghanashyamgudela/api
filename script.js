@@ -1,5 +1,6 @@
 const clientId = "b2311c59d476464f84beb5dd2cab884e"; // Replace with your Client ID
-const redirectUri = "https://localhost:3000/callback.html"; // Make sure this matches your dashboard
+// Make sure this matches your dashboard
+const redirectUri = "https://api-gamma-one-52.vercel.app/callback"; 
 const scopes = "user-read-private user-read-email";
 
 function login() {
