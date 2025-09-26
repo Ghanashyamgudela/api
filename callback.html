@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spotify Callback</title>
+</head>
+<body>
+  <h1>Spotify Login Successful!</h1>
+  <div id="token"></div>
+
+  <script>
+    // Parse access token from URL
+    const hash = window.location.hash.substring(1).split("&").reduce((acc, item) => {
+      const parts = item.split("=");
+      acc[parts[0]] = decodeURIComponent(parts[1]);
+      return acc;
+    }, {});
+
+    const token = hash.access_token;
+    document.getElementById("token").textContent = "Access Token: " + token;
+    console.log("Spotify Access Token:", token);
+  </script>
+</body>
+</html>
